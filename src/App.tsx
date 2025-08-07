@@ -1,35 +1,23 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import Navbar from './components/Navbar';
+import './App.css';
+import image1 from './assets/image1.jpg';
+import image2 from './assets/image2.jpg';
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
+    <div className="app">
+    <Navbar />
+    <section className="hero-images">
+      <div className="image-container">
+        <img src={image1} alt="Hero Image 1" className="hero-image hero-image-1" />
+        <a href="https://www.google.com/maps/search/?api=1&query=Av.%20Hoji%20ya%20Henda%20132,%20Luanda" target="_blank" rel="noopener noreferrer" className="find-us-button">
+          Find Us
         </a>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+      <img src={image2} alt="Hero Image 2" className="hero-image" />
+    </section>
+  </div>
+  );
+};
 
-export default App
+export default App;
