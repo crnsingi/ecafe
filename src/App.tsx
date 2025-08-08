@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Menu from './pages/Menu';
-import OnlineOrder from './pages/OnlineOrder';
 import Contact from './pages/Contact';
 import Login from './pages/Login';
 import './App.css';
@@ -37,7 +36,15 @@ const App: React.FC = () => {
             }
           />
           <Route path="/menu" element={<Menu />} />
-          <Route path="/online-order" element={<OnlineOrder />} />
+          <Route
+            path="/online-order"
+            element={
+              <Navigate
+                to="https://wa.me/1234567890?text=Hello!%20I%20would%20like%20to%20place%20an%20order."
+                replace
+              />
+            }
+          />
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<Navigate to="/" replace />} />
