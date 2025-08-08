@@ -1,25 +1,15 @@
 import React from 'react';
-import '../App.css'; // Reuse App.css
-import image3 from '../assets/image3.jpg'; // Adjust path if needed
+import '../App.css';
+import image3 from '../assets/image3.jpg';
 
-const Menu = () => {
-  console.log("Menu component rendered"); // Debug log
+const Menu: React.FC = () => {
+  console.log("Menu component rendered");
   return (
-    <div className="app" style={{ 
-      paddingTop: '78px', 
-      backgroundColor: '#000000', 
-      color: '#FFFFFF', 
-      minHeight: '100vh', 
-      display: 'flex', 
-      flexDirection: 'column', 
-      justifyContent: 'center', 
-      alignItems: 'center', 
-      textAlign: 'center' 
-    }}>
-      <div style={{ maxWidth: '800px', padding: '20px' }}>
+    <div className="app menu-container">
+      <div className="menu-content">
         <h1>Menu</h1>
-        <img src={image3} alt="Menu" style={{ width: '100%', maxWidth: '600px', borderRadius: '8px' }} />
-        <p style={{ marginTop: '20px' }}>Explore our delicious offerings!</p>
+        <img src={image3} alt="Menu" className="menu-image" />
+        <p>Explore our delicious offerings!</p>
       </div>
     </div>
   );

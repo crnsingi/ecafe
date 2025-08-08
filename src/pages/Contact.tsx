@@ -1,4 +1,3 @@
-import React from 'react';
 import '../App.css'; // Reuse App.css for consistency
 
 const Contact = () => {
