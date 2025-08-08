@@ -1,4 +1,4 @@
-import '../App.css'; // Reuse App.css for consistency
+import '../App.css'; 
 
 const Contact = () => {
   console.log("Contact component rendered"); // Debug log

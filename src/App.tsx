@@ -3,12 +3,13 @@ import Navbar from './components/Navbar';
 import Menu from './pages/Menu';
 import Contact from './pages/Contact';
 import Login from './pages/Login';
+import OnlineOrder from './pages/OnlineOrder';
 import './App.css';
 import image1 from './assets/image1.jpg';
 import image2 from './assets/image2.jpg';
 
 const App: React.FC = () => {
-  console.log("App rendered");
+  console.log("App rendered at 10:24 PM WAT, August 8, 2025");
   return (
     <Router>
       <div className="app">
@@ -36,15 +37,7 @@ const App: React.FC = () => {
             }
           />
           <Route path="/menu" element={<Menu />} />
-          <Route
-            path="/online-order"
-            element={
-              <Navigate
-                to="https://wa.me/1234567890?text=Hello!%20I%20would%20like%20to%20place%20an%20order."
-                replace
-              />
-            }
-          />
+          <Route path="/online-order" element={<OnlineOrder />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<Navigate to="/" replace />} />
