@@ -1,10 +1,106 @@
 /* App.css */
 .app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-images {
+  display: flex;
+  flex-direction: row; /* Side by side */
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  gap: 20px; /* Space between images */
+  justify-content: center; /* Center horizontally */
+  padding: 78px 20px 20px;
+}
+
+.image-container {
+  position: relative;
+  flex: 1; /* Equal width for each container */
+  min-width: 300px; /* Minimum width for responsiveness */
+  max-width: 400px; /* Limit max width */
+}
+
+.hero-image {
   width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+}
+
+.hero-image-1 {
+  max-width: 600px; /* Make image1 larger */
+}
+
+.hero-image-2 {
+  max-width: 400px; /* Smaller than image1 */
+  margin-top: 40px; /* Lower image2 */
+}
+
+.find-us-button {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.find-us-button:hover {
+  background-color: #0056b3;
+}
+
+.order-container {
+  padding-top: 78px;
+  background-color: #000000;
+  color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.order-content {
+  max-width: 800px;
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.order-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.order-content p {
+  font-size: 1.2rem;
+  margin-top: 20px;
+}
+
+.order-now-button {
+  display: inline-block;
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 500;
+  margin-top: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.order-now-button:hover {
+  background-color: #0056b3;
 }
 
 .menu-container,
-.order-container,
 .login-container {
   padding-top: 78px;
   background-color: #000000;
@@ -18,7 +114,6 @@
 }
 
 .menu-content,
-.order-content,
 .login-content {
   max-width: 800px;
   padding: 20px;
@@ -44,14 +139,12 @@
 }
 
 .menu-content h1,
-.order-content h1,
 .login-content h1 {
   font-size: 2.5rem;
   margin-bottom: 1.5rem;
 }
 
 .menu-content p,
-.order-content p,
 .login-content p {
   font-size: 1.2rem;
   margin-top: 20px;
@@ -77,25 +170,6 @@
 .order-features li {
   font-size: 1.1rem;
   margin-bottom: 10px;
-}
-
-.order-now-button,
-.login-button {
-  display: inline-block;
-  background-color: #007bff;
-  color: #fff;
-  padding: 10px 20px;
-  text-decoration: none;
-  border-radius: 4px;
-  font-weight: 500;
-  margin-top: 20px;
-  border: none;
-  cursor: pointer;
-}
-
-.order-now-button:hover,
-.login-button:hover {
-  background-color: #0056b3;
 }
 
 .login-form {
@@ -131,61 +205,23 @@
   border-color: #007bff;
 }
 
-/* Hero section styles (for homepage) */
-.hero-images {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  padding: 78px 20px 20px; /* Account for fixed Navbar */
-  background-color: #000000; /* Consistent with other pages */
-  min-height: 100vh;
-}
-
-.image-container {
-  position: relative;
-  width: 100%;
-  max-width: 800px; /* Consistent max-width */
-}
-
-.hero-image {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  object-fit: cover; /* Ensure images scale nicely */
-}
-
-.hero-image-1 {
-  max-width: 600px; /* Slightly smaller for first image */
-}
-
-.hero-image-2 {
-  max-width: 600px; /* Consistent sizing for second image */
-}
-
-.find-us-button {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #007bff;
-  color: #fff;
-  padding: 10px 20px;
-  text-decoration: none;
-  border-radius: 4px;
-  font-weight: 500;
-}
-
-.find-us-button:hover {
-  background-color: #0056b3;
-}
-
 /* Responsive Styles */
 @media (max-width: 768px) {
+  .hero-images {
+    flex-direction: column; /* Stack images on smaller screens */
+  }
+
+  .image-container {
+    max-width: 100%; /* Full width on small screens */
+  }
+
+  .hero-image-2 {
+    margin-top: 20px; /* Reduced offset on mobile */
+  }
+
   .menu-container,
   .order-container,
-  .login-container,
-  .hero-images {
+  .login-container {
     padding-top: 70px;
   }
 
@@ -209,9 +245,7 @@
 
   .menu-image,
   .order-image,
-  .whatsapp-qr-code,
-  .hero-image-1,
-  .hero-image-2 {
+  .whatsapp-qr-code {
     max-width: 100%;
   }
 
@@ -226,18 +260,12 @@
   .login-form {
     max-width: 100%;
   }
-
-  .find-us-button {
-    padding: 8px 16px;
-    font-size: 0.9rem;
-  }
 }
 
 @media (max-width: 480px) {
   .menu-container,
   .order-container,
-  .login-container,
-  .hero-images {
+  .login-container {
     padding-top: 60px;
   }
 
@@ -254,8 +282,7 @@
   }
 
   .menu-image,
-  .order-image,
-  .hero-image {
+  .order-image {
     border-radius: 4px;
   }
 
@@ -275,16 +302,4 @@
   .order-now-button,
   .login-button {
     padding: 8px 16px;
-    font-size: 0.9rem;
-  }
-
-  .form-group input {
-    padding: 8px;
-    font-size: 0.9rem;
-  }
-
-  .find-us-button {
-    padding: 6px 12px;
-    font-size: 0.8rem;
-  }
-}
+    font-size: 0
