@@ -9,12 +9,15 @@ import image1 from './assets/image1.jpg';
 import image2 from './assets/image2.jpg';
 
 const App: React.FC = () => {
-  console.log("App rendered at 10:24 PM WAT, August 8, 2025");
+  console.log("App rendered at", new Date().toLocaleString());
+
   return (
     <Router>
       <div className="app">
         <Navbar />
+
         <Routes>
+          {/* Home page */}
           <Route
             path="/"
             element={
@@ -36,10 +39,14 @@ const App: React.FC = () => {
               </section>
             }
           />
+
+          {/* Other pages */}
           <Route path="/menu" element={<Menu />} />
           <Route path="/online-order" element={<OnlineOrder />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
+
+          {/* Redirect unknown routes to home */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>
