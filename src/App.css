@@ -9,7 +9,7 @@
   display: flex;
   flex-direction: row; /* Side by side */
   flex-wrap: wrap; /* Allow wrapping on smaller screens */
-  gap: 20px; /* Space between images */
+  gap: 0px; /* Space between images */
   justify-content: center; /* Center horizontally */
   padding: 78px 20px 20px;
 }
@@ -18,8 +18,14 @@
   position: relative;
   flex: 1; /* Equal width for each container */
   min-width: 300px; /* Minimum width for responsiveness */
-  max-width: 400px; /* Limit max width */
+  max-width: 800px; /* Limit max width */
 }
+
+
+.image-container:has(.hero-image-1) {
+  margin-left: 110px; /* Move image 1 to the right, closer to image 2 */
+}
+
 
 .hero-image {
   width: 100%;
@@ -30,19 +36,21 @@
 
 .hero-image-1 {
   max-width: 600px; /* Make image1 larger */
+  margin-right: -10px; /* Negative margin to move image 1 closer to image 2 */
+
 }
 
 .hero-image-2 {
-  max-width: 400px; /* Smaller than image1 */
-  margin-top: 40px; /* Lower image2 */
+  max-width: 600px; /* Smaller than image1 */
+  margin-top: 75px; /* Lower image2 */
 }
 
 .find-us-button {
   position: absolute;
-  bottom: 20px;
-  left: 50%;
+  bottom: 40px;
+  left: 45%;
   transform: translateX(-50%);
-  background-color: #007bff;
+  background-color: black;
   color: #fff;
   padding: 10px 20px;
   text-decoration: none;
