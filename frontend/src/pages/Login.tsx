@@ -18,7 +18,8 @@ const Login: React.FC = () => {
         <p>Access your account to manage orders and reservations.</p>
         <form onSubmit={handleSubmit} className="login-form">
           <div className="form-group">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">Nº de Telefone
+            </label>
             <input
               type="email"
               id="email"
