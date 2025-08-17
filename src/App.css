@@ -21,11 +21,9 @@
   max-width: 800px; /* Limit max width */
 }
 
-
 .image-container:has(.hero-image-1) {
   margin-left: 110px; /* Move image 1 to the right, closer to image 2 */
 }
-
 
 .hero-image {
   width: 100%;
@@ -37,11 +35,10 @@
 .hero-image-1 {
   max-width: 600px; /* Make image1 larger */
   margin-right: -10px; /* Negative margin to move image 1 closer to image 2 */
-
 }
 
 .hero-image-2 {
-  max-width: 600px; /* Smaller than image1 */
+  max-width: 600px; /* Same size as image1 */
   margin-top: 75px; /* Lower image2 */
 }
 
@@ -213,6 +210,35 @@
   border-color: #007bff;
 }
 
+.contact-container {
+  padding-top: 78px;
+  background-color: #000000;
+  color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.contact-content {
+  max-width: 600px;
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.contact-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.contact-content p {
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
   .hero-images {
@@ -223,31 +249,39 @@
     max-width: 100%; /* Full width on small screens */
   }
 
+  .image-container:has(.hero-image-1) {
+    margin-left: 0; /* Remove margin on mobile */
+  }
+
   .hero-image-2 {
     margin-top: 20px; /* Reduced offset on mobile */
   }
 
   .menu-container,
   .order-container,
-  .login-container {
+  .login-container,
+  .contact-container {
     padding-top: 70px;
   }
 
   .menu-content,
   .order-content,
-  .login-content {
+  .login-content,
+  .contact-content {
     padding: 15px;
   }
 
   .menu-content h1,
   .order-content h1,
-  .login-content h1 {
+  .login-content h1,
+  .contact-content h1 {
     font-size: 2rem;
   }
 
   .menu-content p,
   .order-content p,
-  .login-content p {
+  .login-content p,
+  .contact-content p {
     font-size: 1rem;
   }
 
@@ -273,19 +307,22 @@
 @media (max-width: 480px) {
   .menu-container,
   .order-container,
-  .login-container {
+  .login-container,
+  .contact-container {
     padding-top: 60px;
   }
 
   .menu-content h1,
   .order-content h1,
-  .login-content h1 {
+  .login-content h1,
+  .contact-content h1 {
     font-size: 1.5rem;
   }
 
   .menu-content p,
   .order-content p,
-  .login-content p {
+  .login-content p,
+  .contact-content p {
     font-size: 0.9rem;
   }
 
@@ -310,4 +347,6 @@
   .order-now-button,
   .login-button {
     padding: 8px 16px;
-    font-size: 0
+    font-size: 0.9rem; /* Fixed: Added unit (rem) */
+  }
+}
