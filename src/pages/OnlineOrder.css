@@ -1,0 +1,39 @@
+/* OnlineOrder.css */
+.online-order-container {
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .online-order-title {
+    margin-bottom: 1rem;
+  }
+  
+  .online-order-description {
+    margin-bottom: 2rem;
+  }
+  
+  .whatsapp-button {
+    display: inline-block;
+    background-color: #25d366;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .call-info {
+    margin: 1.5rem 0;
+    color: #ffffff;
+  }
+  
+  .call-link {
+    color: #007bff;
+  }
+  
+  .back-to-menu {
+    color: #ffffff;
+    text-decoration: underline;
+  }
