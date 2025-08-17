@@ -1,13 +1,13 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "main": "dist/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node dist/server.js",
-  "build": "tsc",
-  "dev": "nodemon server.ts"
+    "build": "tsc",
+    "dev": "nodemon server.ts",
+    "watch": "tsc --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
@@ -27,5 +27,9 @@
   "devDependencies": {
     "nodemon": "^3.1.10",
     "ts-node": "^10.9.2"
+  },
+  "description": "",
+  "engines": {
+    "node": ">=14.0.0"
   }
 }
