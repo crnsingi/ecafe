@@ -1,14 +1,48 @@
-import React, { useState, type FormEvent } from 'react';
+import React, { useState, FormEvent } from 'react';
 import '../App.css';
 
-const Login: React.FC = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+interface LoginResponse {
+  token: string;
+  user: {
+    id: string;
+    email: string;
+  };
+}
 
-  const handleSubmit = (e: FormEvent) => {
+interface ErrorResponse {
+  message: string;
+}
+
+const Login: React.FC = () => {
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSubmit = async (e: FormEvent): Promise<void> => {
     e.preventDefault();
-    console.log('Login attempt', { email, password });
-    // Add authentication logic here (e.g., Firebase, Auth0)
+    setError(null);
+    try {
+      const response = await fetch('http://localhost:5000/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data: LoginResponse | ErrorResponse = await response.json();
+
+      if (response.ok && 'token' in data) {
+        localStorage.setItem('token', data.token);
+        console.log('Login successful', data);
+        // Add navigation logic (e.g., useNavigate from react-router-dom)
+      } else {
+        setError('message' in data ? data.message : 'Login failed');
+      }
+    } catch (error) {
+      setError('Network error occurred');
+      console.error('Login error:', error);
+    }
   };
 
   return (
@@ -42,6 +76,7 @@ const Login: React.FC = () => {
           <button type="submit" className="login-button">
             Log In
           </button>
+          {error && <p className="error-message">{error}</p>}
         </form>
         <p>
           Don't have an account? <a href="#signup">Sign Up</a>
@@ -51,4 +86,4 @@ const Login: React.FC = () => {
   );
 };
 
-export default Login;
+export default Login

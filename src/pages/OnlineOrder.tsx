@@ -5,7 +5,7 @@ import './OnlineOrder.css'; // Import the new CSS file
 const OnlineOrder: React.FC = () => {
   console.log("OnlineOrder rendered");
 
-  const whatsappNumber = "244123456789";
+  const whatsappNumber = "244921251783";
   const whatsappText = "Hello! I would like to place an order.";
 
   return (
