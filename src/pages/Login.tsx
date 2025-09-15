@@ -1,7 +1,5 @@
-import React, { useState, FormEvent, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, FormEvent } from 'react';
 import '../App.css';
-import debounce from 'lodash.debounce'; // Install lodash for debouncing
 
 interface LoginResponse {
   token: string;
@@ -18,77 +16,11 @@ interface ErrorResponse {
 const Login: React.FC = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [emailError, setEmailError] = useState<string | null>(null);
-  const [passwordError, setPasswordError] = useState<string | null>(null);
-  const [apiError, setApiError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const navigate = useNavigate(); // For navigation after login
-
-  // Email validation regex
-  const validateEmail = (email: string): boolean => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
-
-  // Debounced email validation
-  const debouncedValidateEmail = useCallback(
-    debounce((value: string) => {
-      if (value && !validateEmail(value)) {
-        setEmailError('Please enter a valid email address');
-      } else {
-        setEmailError(null);
-      }
-    }, 500),
-    []
-  );
-
-  // Password validation (e.g., minimum length)
-  const validatePassword = (password: string): boolean => {
-    return password.length >= 6;
-  };
-
-  // Debounced password validation
-  const debouncedValidatePassword = useCallback(
-    debounce((value: string) => {
-      if (value && !validatePassword(value)) {
-        setPasswordError('Password must be at least 6 characters');
-      } else {
-        setPasswordError(null);
-      }
-    }, 500),
-    []
-  );
-
-  // Handle email input change
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setEmail(value);
-    debouncedValidateEmail(value);
-  };
-
-  // Handle password input change
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setPassword(value);
-    debouncedValidatePassword(value);
-  };
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: FormEvent): Promise<void> => {
     e.preventDefault();
-    setApiError(null);
-
-    // Validate before submitting
-    if (!validateEmail(email)) {
-      setEmailError('Please enter a valid email address');
-      return;
-    }
-    if (!validatePassword(password)) {
-      setPasswordError('Password must be at least 6 characters');
-      return;
-    }
-
-    setIsLoading(true);
-
+    setError(null);
     try {
       const response = await fetch('http://localhost:5000/api/auth/login', {
         method: 'POST',
@@ -103,15 +35,13 @@ const Login: React.FC = () => {
       if (response.ok && 'token' in data) {
         localStorage.setItem('token', data.token);
         console.log('Login successful', data);
-        navigate('/dashboard'); // Redirect to dashboard or desired route
+        // Add navigation logic (e.g., useNavigate from react-router-dom)
       } else {
-        setApiError('message' in data ? data.message : 'Login failed');
+        setError('message' in data ? data.message : 'Login failed');
       }
     } catch (error) {
-      setApiError('Network error occurred. Please try again.');
+      setError('Network error occurred');
       console.error('Login error:', error);
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -122,17 +52,15 @@ const Login: React.FC = () => {
         <p>Access your account to manage orders and reservations.</p>
         <form onSubmit={handleSubmit} className="login-form">
           <div className="form-group">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">Nº de Telefone</label>
             <input
               type="email"
               id="email"
               value={email}
-              onChange={handleEmailChange}
+              onChange={(e) => setEmail(e.target.value)}
               required
               placeholder="Enter your email"
-              className={emailError ? 'input-error' : ''}
             />
-            {emailError && <p className="error-message">{emailError}</p>}
           </div>
           <div className="form-group">
             <label htmlFor="password">Password</label>
@@ -140,28 +68,22 @@ const Login: React.FC = () => {
               type="password"
               id="password"
               value={password}
-              onChange={handlePasswordChange}
+              onChange={(e) => setPassword(e.target.value)}
               required
               placeholder="Enter your password"
-              className={passwordError ? 'input-error' : ''}
             />
-            {passwordError && <p className="error-message">{passwordError}</p>}
           </div>
-          <button
-            type="submit"
-            className="login-button"
-            disabled={isLoading || !!emailError || !!passwordError}
-          >
-            {isLoading ? 'Logging In...' : 'Log In'}
+          <button type="submit" className="login-button">
+            Log In
           </button>
-          {apiError && <p className="error-message">{apiError}</p>}
+          {error && <p className="error-message">{error}</p>}
         </form>
         <p>
-          Don't have an account? <a href="/signup">Sign Up</a>
+          Don't have an account? <a href="#signup">Sign Up</a>
         </p>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default Login
